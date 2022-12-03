@@ -1,28 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Routes,Route} from 'react-router-dom';
+import {Home} from './Home';
+import {Mod1,Mod2} from './mods';
+import {Win,Lose,Draw,Error} from './ResultPages';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Button>Test Button</Button>
-        <Button>Test Button2</Button>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          <Routes>
+              <Route path='/' element={<Home />}/>
+              <Route path='/mod1' element={<Mod1 />}/>
+              <Route path='/mod2' element={<Mod2 />}/>
+              <Route path='/win' element={<Win />}/>
+              <Route path='/lose' element={<Lose />}/>
+              <Route path='/draw' element={<Draw />}/>
+              <Route path='/error' element={<Error />}/>
+          </Routes>
+      </>
   );
 }
 
