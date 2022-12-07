@@ -7,7 +7,8 @@ export const Win =()=>{
 
     return(
         <div>
-            <p>Kazandın :), sen {state.chosen} seçtin, bilgisayar {state.computer} seçti! </p>
+            <p>Sen: {state.score[0]}, bilgisayar: {state.score[1]}</p>
+            <p>Kazandın :), sen {state.choices} seçtin, bilgisayar {state.computer} seçti! </p>
             <Button onClick={()=>navigate('/')}>Ana Sayfa</Button>
         </div>
     )
@@ -19,7 +20,8 @@ export const Lose =()=>{
 
     return(
         <div>
-            <p>Kaybettin :(, sen {state.chosen} seçtin, bilgisayar {state.computer} seçti!</p>
+            <p>Sen: {state.score[0]}, bilgisayar: {state.score[1]}</p>
+            <p>Kaybettin :(, sen {state.choices} seçtin, bilgisayar {state.computer} seçti!</p>
             <Button onClick={()=>navigate('/')}>Ana Sayfa</Button>
         </div>
     )
@@ -32,7 +34,8 @@ export const Draw =()=>{
     return(
 
         <div>
-            <p>Berabere, sen {state.chosen} seçtin, bilgisayar {state.computer} seçti!</p>
+            <p>Sen: {state.score[0]}, bilgisayar: {state.score[1]}</p>
+            <p>Berabere, sen {state.choices} seçtin, bilgisayar {state.computer} seçti!</p>
             <Button onClick={()=>navigate('/')}>Ana Sayfa</Button>
         </div>
     )
