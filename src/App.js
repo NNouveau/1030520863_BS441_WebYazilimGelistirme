@@ -24,3 +24,4 @@ function App() {
 
 export default App;
 //commit için açıklama
+//commit için açıklama 24.12
