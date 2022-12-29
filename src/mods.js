@@ -6,7 +6,7 @@ import kagit from './image/kagıt.png';
 import tasplus from './image/tasplus.png';
 import kagitplus from './image/kağıtplus.png';
 import makasplus from './image/makasplus.png';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 function randomNum(min,max){
@@ -49,6 +49,7 @@ export const Mod1 =()=>{
 }
 
 let phase=0;
+let useeffectstop=0;
 
 export const Mod2 =()=>{
     const navigate=useNavigate();
@@ -58,25 +59,26 @@ export const Mod2 =()=>{
     let tools = ['tas', 'kagıt', 'makas'];
     let toolsplus = ['tas+', 'kagıt+', 'makas+'];
     let computer=[tools[randomNum(0,2)],toolsplus[randomNum(0,2)]];
+    useEffect(()=>{
+        if (phase===2&&useeffectstop===0){
+            console.log(choices)
+            setVisible([true,true,true]);
+            setVisibleplus(notIn(choices));
+            useeffectstop++;
+        }
+        if(phase===3){
+            console.log(choices)
+            let score=Calculate(choices,computer);
+            navigate(result(score), { state: {choices,computer,score} });
+            phase=0;
+            useeffectstop=0;
+        }
+    })
 
     return(
         <div>
             <p>Oyun Modu 2</p>
-            <div onMouseMove={()=>{
-                if (phase===2){
-                    setVisible([true,true,true]);
-                    setVisibleplus(notIn(choices));
-                }
-                if(phase===3){
-                    console.log(Calculate(choices,computer));
-                    console.log("oyuncu: "+choices);
-                    console.log("bilgisayar: "+computer);
-                    let score=Calculate(choices,computer);
-                    navigate(result(score), { state: {choices,computer,score} });
-                    phase=0;
-                }
-            }}>
-
+            <div>
                 <img src={tas} hidden={visible[0]}  alt="logo" onClick={()=>{
                     if (phase===0){
                         setChoices(prevState=>['tas',prevState[1]]);
@@ -168,7 +170,7 @@ function Calculate(choices,computer){
         if (computer.includes('makas+')){
             score[0]+=1;
         }
-        else if(computer.includes('makas')){
+        if(computer.includes('makas')){
             score[0]+=2;
         }
     }
@@ -176,7 +178,7 @@ function Calculate(choices,computer){
         if (computer.includes('tas+')){
             score[0]+=1;
         }
-        else if(computer.includes('tas')){
+        if(computer.includes('tas')){
             score[0]+=2;
         }
     }
@@ -184,7 +186,7 @@ function Calculate(choices,computer){
         if (computer.includes('kagıt+')){
             score[0]+=1;
         }
-        else if(computer.includes('kagıt')){
+        if(computer.includes('kagıt')){
             score[0]+=2;
         }
     }
@@ -207,7 +209,7 @@ function Calculate(choices,computer){
         if (choices.includes('makas+')){
             score[1]+=1;
         }
-        else if(choices.includes('makas')){
+        if(choices.includes('makas')){
             score[1]+=2;
         }
     }
@@ -215,7 +217,7 @@ function Calculate(choices,computer){
         if (choices.includes('tas+')){
             score[1]+=1;
         }
-        else if(choices.includes('tas')){
+        if(choices.includes('tas')){
             score[1]+=2;
         }
     }
@@ -223,7 +225,7 @@ function Calculate(choices,computer){
         if (choices.includes('kagıt+')){
             score[1]+=1;
         }
-        else if(choices.includes('kagıt')){
+        if(choices.includes('kagıt')){
             score[1]+=2;
         }
     }
